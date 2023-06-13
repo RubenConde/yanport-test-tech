@@ -61,7 +61,7 @@ export class AppService {
   private _checkSizeInitialPositionLogic(setup: SetupHooverDto) {
     const x = setup.initialPosition.x;
     const y = setup.initialPosition.y;
-    if (x > setup.gridSize.x || x < 0 || y > setup.gridSize.x || y < 0)
+    if (x > setup.gridSize.x || x < 0 || y > setup.gridSize.y || y < 0)
       throw new BadRequestException(
         'The initial position is outside the limits of the grid surface.',
       );
@@ -102,10 +102,10 @@ export class AppService {
     };
     switch (currPosition.orientation) {
       case CardinalDirections.North:
-        if (currPosition.y < gridSize.y) newCoordinates.y++;
+        if (currPosition.y < gridSize.y - 1) newCoordinates.y++;
         break;
       case CardinalDirections.East:
-        if (currPosition.x < gridSize.x) newCoordinates.x++;
+        if (currPosition.x < gridSize.x - 1) newCoordinates.x++;
         break;
       case CardinalDirections.South:
         if (currPosition.y > 0) newCoordinates.y--;
