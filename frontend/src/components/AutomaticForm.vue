@@ -25,7 +25,6 @@ const emitSubmit = () => {
     },
     commandString: command.value
   }
-  console.log(body)
   emit('press', body)
 }
 </script>

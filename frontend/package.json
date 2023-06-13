@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "prod": "http-server dist",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
@@ -13,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "http-server": "^14.1.1",
     "vue": "^3.3.4",
     "vue-router": "^4.2.2"
   },

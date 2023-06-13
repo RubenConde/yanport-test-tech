@@ -20,11 +20,10 @@ const getAutomaticConfiguration = (event: RequestBody) => {
   numberOfRows.value = event.gridSize.x
 
   axios.post('http://localhost:3000/setup', event).then((resp) => {
-    const steps: object[] = resp.data
+    const steps: ResponseBody[] = resp.data
     let timer = 0
     steps.forEach((step) => {
       setTimeout(() => {
-        console.log(step.position)
         arrowPosition.value = step.position
       }, (timer += 1000))
     })
@@ -42,7 +41,7 @@ const getControlsCommands = (event: string) => {
       commandString: event
     })
     .then((resp) => {
-      const steps: object[] = resp.data
+      const steps: ResponseBody[] = resp.data
       arrowPosition.value = steps[steps.length - 1].position
     })
 }
