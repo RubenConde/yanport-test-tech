@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import {
   CardinalDirections,
   Coordinates,
@@ -19,13 +19,7 @@ export class AppService {
     const workingSetup: SetupHooverDto = JSON.parse(JSON.stringify(setup));
     const positionTrack: TrackPosition[] = [];
 
-    // Define default values
-    if (!setup.gridSize) workingSetup.gridSize = { x: 10, y: 10 };
-    if (!setup.initialPosition)
-      workingSetup.initialPosition = {
-        ...this._getGridCenter(workingSetup.gridSize),
-        orientation: CardinalDirections.North,
-      };
+    this._checkSizeInitialPositionLogic(setup);
 
     positionTrack.push({
       cmd: '-',
@@ -64,10 +58,13 @@ export class AppService {
     return positionTrack;
   }
 
-  private _getGridCenter(grid: Coordinates) {
-    const centerX = Math.floor(grid.x / 2);
-    const centerY = Math.floor(grid.y / 2);
-    return { x: centerX, y: centerY };
+  private _checkSizeInitialPositionLogic(setup: SetupHooverDto) {
+    const x = setup.initialPosition.x;
+    const y = setup.initialPosition.y;
+    if (x > setup.gridSize.x || x < 0 || y > setup.gridSize.x || y < 0)
+      throw new BadRequestException(
+        'The initial position is outside the limits of the grid surface.',
+      );
   }
 
   private _updateOrientation(

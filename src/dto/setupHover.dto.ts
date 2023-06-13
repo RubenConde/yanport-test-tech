@@ -52,7 +52,6 @@ export class Position extends Coordinates {
 
 export class SetupHooverDto {
   @ApiProperty({
-    required: false,
     title: 'Grid Size',
     description: 'Size of the moving surface for the hoover.',
   })
@@ -64,7 +63,6 @@ export class SetupHooverDto {
   gridSize: Coordinates;
 
   @ApiProperty({
-    required: false,
     title: 'Initial Position',
     description:
       "Coordinates from where the hoover will start. It includes the hoover's orientation",
