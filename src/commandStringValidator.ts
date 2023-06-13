@@ -1,4 +1,5 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
+import { IndividualCommands } from './setupHover.dto';
 
 export function IsCommandString(validationOptions?: ValidationOptions) {
   return function (object: object, propertyName: string) {
@@ -9,8 +10,11 @@ export function IsCommandString(validationOptions?: ValidationOptions) {
       options: validationOptions,
       validator: {
         validate(value) {
-          if (typeof value === 'string')
-            return value.match(/^[ADG ]+$/g) !== null;
+          if (typeof value === 'string') {
+            const commandValues = Object.values(IndividualCommands).join('');
+            const regex = new RegExp(`^[${commandValues}]+$`, 'g');
+            return value.match(regex) !== null;
+          }
           return false;
         },
       },

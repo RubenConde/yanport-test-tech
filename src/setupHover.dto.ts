@@ -1,7 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  ArrayContains,
-  IsEnum,
   IsIn,
   IsInt,
   IsNotEmpty,
@@ -16,20 +14,20 @@ import {
 import { IsCommandString } from './commandStringValidator';
 import { Type } from 'class-transformer';
 
-enum CardinalDirections {
+export enum CardinalDirections {
   North = 'N',
+  East = 'E',
   South = 'S',
   West = 'W',
-  East = 'E',
 }
 
-enum IndividualCommands {
+export enum IndividualCommands {
   Advance = 'A',
   Right = 'D',
   Left = 'G',
 }
 
-class Coordinates {
+export class Coordinates {
   @ApiProperty()
   @IsNumber()
   @IsNotEmpty()
@@ -43,7 +41,7 @@ class Coordinates {
   y: number;
 }
 
-class Position extends Coordinates {
+export class Position extends Coordinates {
   @ApiProperty({ enum: CardinalDirections })
   @IsString()
   @IsIn(Object.values(CardinalDirections))
@@ -74,7 +72,9 @@ export class SetupHooverDto {
   @IsString()
   @Length(1)
   @IsCommandString({
-    message: 'commands must contain only the following characters: A, D, G',
+    message: `commandString must contain only the following characters: ${Object.values(
+      IndividualCommands,
+    ).join(', ')}`,
   })
-  commands: string;
+  commandString: string;
 }
