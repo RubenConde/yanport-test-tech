@@ -9,7 +9,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
 
   const config = new DocumentBuilder()
-    .setTitle('Yanport Test Technique')
+    .setTitle('iHoover API')
     .setDescription('Yanport Test Technique')
     .setVersion('1.0')
     .build();

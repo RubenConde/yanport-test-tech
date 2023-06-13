@@ -51,7 +51,11 @@ export class Position extends Coordinates {
 }
 
 export class SetupHooverDto {
-  @ApiProperty({ required: false })
+  @ApiProperty({
+    required: false,
+    title: 'Grid Size',
+    description: 'Size of the moving surface for the hoover.',
+  })
   @IsOptional()
   @IsObject()
   @IsNotEmptyObject()
@@ -59,7 +63,12 @@ export class SetupHooverDto {
   @Type(() => Coordinates)
   gridSize: Coordinates;
 
-  @ApiProperty({ required: false })
+  @ApiProperty({
+    required: false,
+    title: 'Initial Position',
+    description:
+      "Coordinates from where the hoover will start. It includes the hoover's orientation",
+  })
   @IsOptional()
   @IsObject()
   @IsNotEmptyObject()
@@ -67,7 +76,12 @@ export class SetupHooverDto {
   @Type(() => Position)
   initialPosition: Position;
 
-  @ApiProperty({ example: 'ADDGDAGDG' })
+  @ApiProperty({
+    example: 'ADDGDAGDG',
+    title: 'Command String',
+    description:
+      'Text used to command the hoover. A = Advance, D = Right, G = Left.',
+  })
   @IsNotEmpty()
   @IsString()
   @Length(1)
