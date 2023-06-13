@@ -1,6 +1,6 @@
 import { HttpStatus } from '@nestjs/common';
 import { ApiResponseSchemaHost } from '@nestjs/swagger';
-import { CardinalDirections } from 'src/dto/setupHover.dto';
+import { CardinalDirections } from '../dto/setupHover.dto';
 
 export const okResponse: ApiResponseSchemaHost = {
   schema: {
