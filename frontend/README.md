@@ -16,4 +16,4 @@ npm run prod
 
 2. The Web will run in the port `8080`
 
-3. You can enter the site at `http://localhost:8080/swagger`
+3. You can enter the site at `http://localhost:8080/`
