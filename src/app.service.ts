@@ -7,12 +7,17 @@ import {
   SetupHooverDto,
 } from './dto/setupHover.dto';
 
+type TrackPosition = {
+  cmd: string;
+  position: Position;
+  order: number;
+};
+
 @Injectable()
 export class AppService {
   setupHoover(setup: SetupHooverDto) {
     const workingSetup: SetupHooverDto = JSON.parse(JSON.stringify(setup));
-    const positionTrack: { cmd: string; position: Position; order: number }[] =
-      [];
+    const positionTrack: TrackPosition[] = [];
 
     // Define default values
     if (!setup.gridSize) workingSetup.gridSize = { x: 10, y: 10 };
