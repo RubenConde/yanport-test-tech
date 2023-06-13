@@ -31,16 +31,16 @@ describe('AppController', () => {
           commandString: 'DADADADAA',
         }),
       ).toStrictEqual([
-        { cmd: '-', position: { orientation: 'N', x: 5, y: 5 } },
-        { cmd: 'D', position: { orientation: 'E', x: 5, y: 5 } },
-        { cmd: 'A', position: { orientation: 'E', x: 6, y: 5 } },
-        { cmd: 'D', position: { orientation: 'S', x: 6, y: 5 } },
-        { cmd: 'A', position: { orientation: 'S', x: 6, y: 4 } },
-        { cmd: 'D', position: { orientation: 'W', x: 6, y: 4 } },
-        { cmd: 'A', position: { orientation: 'W', x: 5, y: 4 } },
-        { cmd: 'D', position: { orientation: 'N', x: 5, y: 4 } },
-        { cmd: 'A', position: { orientation: 'N', x: 5, y: 5 } },
-        { cmd: 'A', position: { orientation: 'N', x: 5, y: 6 } },
+        { cmd: '-', position: { orientation: 'N', x: 5, y: 5 }, order: 0 },
+        { cmd: 'D', position: { orientation: 'E', x: 5, y: 5 }, order: 1 },
+        { cmd: 'A', position: { orientation: 'E', x: 6, y: 5 }, order: 2 },
+        { cmd: 'D', position: { orientation: 'S', x: 6, y: 5 }, order: 3 },
+        { cmd: 'A', position: { orientation: 'S', x: 6, y: 4 }, order: 4 },
+        { cmd: 'D', position: { orientation: 'W', x: 6, y: 4 }, order: 5 },
+        { cmd: 'A', position: { orientation: 'W', x: 5, y: 4 }, order: 6 },
+        { cmd: 'D', position: { orientation: 'N', x: 5, y: 4 }, order: 7 },
+        { cmd: 'A', position: { orientation: 'N', x: 5, y: 5 }, order: 8 },
+        { cmd: 'A', position: { orientation: 'N', x: 5, y: 6 }, order: 9 },
       ]);
     });
   });

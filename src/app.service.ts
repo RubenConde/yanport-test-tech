@@ -11,7 +11,8 @@ import {
 export class AppService {
   setupHoover(setup: SetupHooverDto) {
     const workingSetup: SetupHooverDto = JSON.parse(JSON.stringify(setup));
-    const positionTrack: { cmd: string; position: Position }[] = [];
+    const positionTrack: { cmd: string; position: Position; order: number }[] =
+      [];
 
     // Define default values
     if (!setup.gridSize) workingSetup.gridSize = { x: 10, y: 10 };
@@ -21,13 +22,17 @@ export class AppService {
         orientation: CardinalDirections.North,
       };
 
-    positionTrack.push({ cmd: '-', position: workingSetup.initialPosition });
+    positionTrack.push({
+      cmd: '-',
+      position: workingSetup.initialPosition,
+      order: 0,
+    });
 
     // Update hoover details
     const commands = workingSetup.commandString.split('');
     let currPosition = workingSetup.initialPosition;
 
-    commands.forEach((cmd) => {
+    commands.forEach((cmd, index) => {
       let newOrientation: CardinalDirections = currPosition.orientation;
       let newCoordinates: Coordinates = {
         x: currPosition.x,
@@ -48,7 +53,7 @@ export class AppService {
         orientation: newOrientation,
       };
 
-      positionTrack.push({ cmd, position: currPosition });
+      positionTrack.push({ cmd, position: currPosition, order: index + 1 });
     });
 
     return positionTrack;
