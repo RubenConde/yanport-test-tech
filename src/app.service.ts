@@ -1,7 +1,58 @@
 import { Injectable } from '@nestjs/common';
+import {
+  CardinalDirections,
+  Coordinates,
+  IndividualCommands,
+  Position,
+  SetupHooverDto,
+} from './setupHover.dto';
 
 @Injectable()
 export class AppService {
+  setupHoover(setup: SetupHooverDto) {
+    const workingSetup: SetupHooverDto = JSON.parse(JSON.stringify(setup));
+    const positionTrack: { cmd: string; position: Position }[] = [];
+
+    // Define default values
+    if (!setup.gridSize) workingSetup.gridSize = { x: 10, y: 10 };
+    if (!setup.initialPosition)
+      workingSetup.initialPosition = {
+        ...this._getGridCenter(workingSetup.gridSize),
+        orientation: CardinalDirections.North,
+      };
+
+    positionTrack.push({ cmd: '-', position: workingSetup.initialPosition });
+
+    // Update hoover details
+    const commands = workingSetup.commandString.split('');
+    let currPosition = workingSetup.initialPosition;
+
+    commands.forEach((cmd) => {
+      let newOrientation: CardinalDirections = currPosition.orientation;
+      let newCoordinates: Coordinates = {
+        x: currPosition.x,
+        y: currPosition.y,
+      };
+
+      if (cmd === IndividualCommands.Advance) {
+        newCoordinates = this._updatePosition(
+          currPosition,
+          workingSetup.gridSize,
+        );
+      } else {
+        newOrientation = this._updateOrientation(currPosition, cmd);
+      }
+
+      currPosition = {
+        ...newCoordinates,
+        orientation: newOrientation,
+      };
+
+      positionTrack.push({ cmd, position: currPosition });
+    });
+
+    return positionTrack;
+  }
 
   private _getGridCenter(grid: Coordinates) {
     const centerX = Math.floor(grid.x / 2);
