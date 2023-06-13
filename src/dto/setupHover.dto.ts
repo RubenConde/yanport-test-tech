@@ -11,7 +11,7 @@ import {
   Length,
   ValidateNested,
 } from 'class-validator';
-import { IsCommandString } from './commandStringValidator';
+import { IsCommandString } from '../validators/commandStringValidator';
 import { Type } from 'class-transformer';
 
 export enum CardinalDirections {

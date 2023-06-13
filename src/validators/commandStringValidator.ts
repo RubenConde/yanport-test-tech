@@ -1,5 +1,5 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
-import { IndividualCommands } from './setupHover.dto';
+import { IndividualCommands } from '../dto/setupHover.dto';
 
 export function IsCommandString(validationOptions?: ValidationOptions) {
   return function (object: object, propertyName: string) {

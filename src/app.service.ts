@@ -5,7 +5,7 @@ import {
   IndividualCommands,
   Position,
   SetupHooverDto,
-} from './setupHover.dto';
+} from './dto/setupHover.dto';
 
 @Injectable()
 export class AppService {

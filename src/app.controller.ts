@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import { AppService } from './app.service';
-import { SetupHooverDto } from './setupHover.dto';
+import { SetupHooverDto } from './dto/setupHover.dto';
 
 @Controller()
 export class AppController {

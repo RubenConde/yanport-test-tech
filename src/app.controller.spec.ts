@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CardinalDirections } from './setupHover.dto';
+import { CardinalDirections } from './dto/setupHover.dto';
 
 describe('AppController', () => {
   let appController: AppController;
