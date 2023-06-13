@@ -3,6 +3,12 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
 
+  private _getGridCenter(grid: Coordinates) {
+    const centerX = Math.floor(grid.x / 2);
+    const centerY = Math.floor(grid.y / 2);
+    return { x: centerX, y: centerY };
+  }
+
   private _updateOrientation(
     currPosition: Position,
     cmd: string,
