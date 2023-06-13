@@ -24,6 +24,7 @@ const getAutomaticConfiguration = (event: RequestBody) => {
     let timer = 0
     steps.forEach((step) => {
       setTimeout(() => {
+        console.log(step.position)
         arrowPosition.value = step.position
       }, (timer += 1000))
     })
@@ -48,8 +49,8 @@ const getControlsCommands = (event: string) => {
 </script>
 
 <template>
-  <main class="w-screen h-screen p-10 bg-gray-900" :key="componentKey">
-    <div class="flex flex-row h-4/5">
+  <main class="bg-gray-900 h-full w-full items-center" :key="componentKey">
+    <div class="p-5 md:p-10 flex flex-col md:flex-row w-full h-full md:h-4/5 gap-5">
       <ItemsGrid
         :number-of-columns="numberOfColumns"
         :number-of-rows="numberOfRows"
@@ -57,8 +58,18 @@ const getControlsCommands = (event: string) => {
       />
       <ControlsSection @press="getControlsCommands" @reset="reset" />
     </div>
-    <div class="flex flex-row p-5 h-1/5">
+    <div class="flex flex-col md:flex-row p-5 md:p-10  md:h-1/5">
       <AutomaticForm @press="getAutomaticConfiguration" />
     </div>
   </main>
 </template>
+
+<style>
+html,
+body,
+#app {
+  height: 100%;
+   --tw-bg-opacity: 1;
+  background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
+}
+</style>

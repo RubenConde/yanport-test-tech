@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { CardinalDirections } from '@/types/CardinalDirection.enum';
-
+import { CardinalDirections } from '@/types/CardinalDirection.enum'
 
 defineProps({
   orientation: { type: String, required: true }
@@ -9,7 +8,7 @@ defineProps({
 
 <template>
   <div
-    class="m-auto"
+    class="arrow"
     :class="{
       'arrow-up': orientation === CardinalDirections.North,
       'arrow-right': orientation === CardinalDirections.East,
@@ -23,32 +22,32 @@ defineProps({
 .arrow-up {
   width: 0;
   height: 0;
-  border-left: 1.5em solid transparent;
-  border-right: 1.5em solid transparent;
-  border-bottom: 1.5em solid blueviolet;
+  border-left: 0.8rem solid transparent;
+  border-right: 0.8rem solid transparent;
+  border-bottom: 0.8rem solid blueviolet;
 }
 
 .arrow-down {
   width: 0;
   height: 0;
-  border-left: 1.5em solid transparent;
-  border-right: 1.5em solid transparent;
-  border-top: 1.5em solid blueviolet;
+  border-left: 0.8rem solid transparent;
+  border-right: 0.8rem solid transparent;
+  border-top: 0.8rem solid blueviolet;
 }
 
 .arrow-right {
   width: 0;
   height: 0;
-  border-top: 1.5em solid transparent;
-  border-bottom: 1.5em solid transparent;
-  border-left: 1.5em solid blueviolet;
+  border-top: 0.8rem solid transparent;
+  border-bottom: 0.8rem solid transparent;
+  border-left: 0.8rem solid blueviolet;
 }
 
 .arrow-left {
   width: 0;
   height: 0;
-  border-top: 1.5em solid transparent;
-  border-bottom: 1.5em solid transparent;
-  border-right: 1.5em solid blueviolet;
+  border-top: 0.8rem solid transparent;
+  border-bottom: 0.8rem solid transparent;
+  border-right: 0.8rem solid blueviolet;
 }
 </style>

@@ -15,8 +15,8 @@ const cardinalDirections = Object.values(CardinalDirections)
 const emitSubmit = () => {
   const body: RequestBody = {
     gridSize: {
-      x: numberOfRows.value,
-      y: numberOfColumns.value
+      x: numberOfColumns.value,
+      y: numberOfRows.value
     },
     initialPosition: {
       x: initialColumn.value,
@@ -25,33 +25,42 @@ const emitSubmit = () => {
     },
     commandString: command.value
   }
+  console.log(body)
   emit('press', body)
 }
 </script>
 
 <template>
   <form
-    class="text-lg text-gray-100 flex flex-row w-3/4 p-1 gap-5 content-around justify-center"
+    class="text-lg text-gray-100 flex flex-col md:flex-row w-full md:w-2/3 p-1 gap-5 items-center justify-center"
     @submit.prevent="emitSubmit"
   >
-    <div class="text-lg text-gray-100 flex flex-col justify-center">
+    <div class="text-lg text-gray-100 flex flex-col justify-center w-full">
       Columns:
       <input
         v-model.number="numberOfColumns"
         class="text-lg text-gray-900"
         type="number"
         max="20"
+        min="1"
       />
       Rows:
-      <input v-model.number="numberOfRows" class="text-lg text-gray-900" type="number" max="20" />
+      <input
+        v-model.number="numberOfRows"
+        class="text-lg text-gray-900"
+        type="number"
+        min="1"
+        max="20"
+      />
     </div>
-    <div class="text-lg text-gray-100 flex flex-col justify-center">
+    <div class="text-lg text-gray-100 flex flex-col justify-center w-full">
       Initial Column:
       <input
         v-model.number="initialColumn"
         class="text-lg text-gray-900"
         type="number"
         :max="numberOfColumns - 1"
+        min="1"
       />
       Initial Row:
       <input
@@ -59,21 +68,22 @@ const emitSubmit = () => {
         class="text-lg text-gray-900"
         type="number"
         :max="numberOfRows - 1"
+        min="1"
       />
     </div>
-    <div class="text-lg text-gray-100 flex flex-col justify-center">
-      Command:
-      <input v-model="command" class="text-lg text-gray-900" type="text" />
-      Orientation
+    <div class="text-lg text-gray-100 flex flex-col justify-center w-full">
+      Initial Orientation
       <select v-model="orientation" class="text-lg text-gray-900">
         <option v-for="(item, index) in cardinalDirections" :key="index">{{ item }}</option>
       </select>
+      Command:
+      <input v-model="command" class="text-lg text-gray-900" type="text" />
     </div>
     <div class="text-lg text-gray-100 flex flex-col items-center justify-center">
       <input
         required
         type="submit"
-        class="w-28 h-24 bg-gray-500 rounded text-xl cursor-pointer"
+        class="w-28 h-20 bg-gray-500 rounded text-xl cursor-pointer"
         value="Send"
         @submit="emitSubmit"
       />
