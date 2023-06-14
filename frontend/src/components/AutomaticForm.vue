@@ -12,6 +12,14 @@ const command = ref('DADADADAA')
 const orientation: Ref<CardinalDirections> = ref(CardinalDirections.North)
 const cardinalDirections = Object.values(CardinalDirections)
 
+const scrollToElement = () =>  {
+  const el = document.getElementById("grid");
+
+  if (el) {
+    el.scrollIntoView();
+  }
+}
+
 const emitSubmit = () => {
   const body: RequestBody = {
     gridSize: {
@@ -26,6 +34,7 @@ const emitSubmit = () => {
     commandString: command.value
   }
   emit('press', body)
+  scrollToElement()
 }
 </script>
 

@@ -48,7 +48,7 @@ const getControlsCommands = (event: string) => {
 </script>
 
 <template>
-  <main class="bg-gray-900 h-full w-full items-center" :key="componentKey">
+  <main class="bg-gray-900 h-full w-full items-center" :key="componentKey" id="grid">
     <div class="p-5 md:p-10 flex flex-col md:flex-row w-full h-full md:h-4/5 gap-5">
       <ItemsGrid
         :number-of-columns="numberOfColumns"
@@ -57,7 +57,7 @@ const getControlsCommands = (event: string) => {
       />
       <ControlsSection @press="getControlsCommands" @reset="reset" />
     </div>
-    <div class="flex flex-col md:flex-row p-5 md:p-10  md:h-1/5">
+    <div class="flex flex-col md:flex-row p-5 md:p-10 md:h-1/5">
       <AutomaticForm @press="getAutomaticConfiguration" />
     </div>
   </main>
@@ -68,7 +68,7 @@ html,
 body,
 #app {
   height: 100%;
-   --tw-bg-opacity: 1;
+  --tw-bg-opacity: 1;
   background-color: rgba(17, 24, 39, var(--tw-bg-opacity));
 }
 </style>

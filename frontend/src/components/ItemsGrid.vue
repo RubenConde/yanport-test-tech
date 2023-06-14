@@ -36,7 +36,7 @@ const cardsArray = computed(() => {
         :key="idx"
         class="h-full w-full border-[1px] text-xs flex flex-col items-center justify-center relative overflow-hidden"
       >
-        <small class="absolute z-0 opacity-25 select-none ">{{ `x:${idx},y:${index}` }}</small>
+        <small class="absolute z-0 opacity-25 select-none">{{ `x:${idx},y:${index}` }}</small>
         <Arrow
           class="z-10"
           :orientation="arrowPosition.orientation"
